@@ -4,7 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-
-  url_backend = "http://127.0.0.1:7000";
-
+  url_backend = "https://internship-management-backend-l8t9.onrender.com"; 
 }
