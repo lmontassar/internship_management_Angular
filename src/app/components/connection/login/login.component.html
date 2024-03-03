@@ -1,0 +1,30 @@
+<div class="form-container">
+    <h2>Connexion</h2>
+    <form #inscriForm = "ngForm" (ngSubmit) = "onSubmit()" >
+        <div>
+            <label for="emailid">Login</label>
+            <input class="text-zone" [class.input-invalid]="typerr == 0" type="email" id="emailid" name="email" placeholder="tapez votre login" ngModel>
+            @if(typerr == 0){
+                <small class="invalid" >{{messerr}}</small> 
+            }  
+        </div>
+        <div>
+            <label for="passid">Password:</label>
+            <input class="text-zone" [class.input-invalid]="typerr == 1" type="password" id="passid" name="password" placeholder="tapez votre password" ngModel>
+            @if(typerr == 1){
+                <small class="invalid" >{{messerr}}</small> 
+            }
+        </div>
+        <div>
+            <button type="submit" class="btn">connexion</button>
+        </div>
+        <div class="inscri-from-log">
+            <span class="inscri-messg">
+                Pour accéder en tant que <strong>stagiaire</strong> pour la <strong>première fois</strong>, vous devez d'abord vous inscrire.
+                <span class="inscri-lien" [routerLink]='["/inscription"]'>
+                    Inscrivez-vous.
+                </span>
+            </span>
+        </div>
+    </form>
+</div>

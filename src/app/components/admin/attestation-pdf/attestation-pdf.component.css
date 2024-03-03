@@ -1,0 +1,501 @@
+.v{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.v small {
+    color: darkgreen;
+}
+
+.popupContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    max-width: 900px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
+    height: -webkit-fill-available;
+    height: 79%;
+    z-index: 100001;
+    border-radius: 10px;
+}
+
+  .popupContainer::-webkit-scrollbar {
+    width: 5px;
+    transition: 0.3s;
+  }
+  .popupContainer::-webkit-scrollbar{
+    width: 10px;
+  }
+  /* Height of the scrollbar for horizontal scrolling */
+  .popupContainer::-webkit-scrollbar:horizontal {
+    height: 8px;
+  }
+  
+  /* Border radius */
+  .popupContainer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #c1c1c1;/* Background color of the scrollbar */
+  }
+
+  .blurBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Adjust the blur strength as needed */
+    z-index: 100000;
+  }
+
+
+  h2{
+    text-align: center;
+  }
+
+
+
+label {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.text-zone {
+    border: 2px solid #fdc613;
+    border-radius: 5px;
+    transition: 0.3s;
+    outline: none;
+    padding: 8px 25px;
+    font-size: 20px;
+    color: #081d5c;
+    background: none;
+    width: -webkit-fill-available;
+}
+.text-zone:focus {
+    border: 2px solid #113399;
+    transition: 0.3s;
+}
+.fullname>div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.input-invalid {
+    border-color: red !important;
+}
+small.invalid {
+    color: #b90000;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+button.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #fdc613;
+    background-color: #081d5c;
+    border: 0;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+button.btn:hover {
+    color: #ffffff;
+    background-color: #1f3987;
+}
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #081d5c;
+    cursor: pointer;
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: inherit;
+}
+select option {
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+span.prec {
+    font-size: 16px;
+    margin-right: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+span.prec svg {
+    width: 16px;
+    height: 16px;
+    fill: #081d5c;
+}
+.inscri-from-log {
+    font-size: 17px;
+    text-wrap: wrap;
+}
+span.inscri-lien {
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.key{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+h2 span:first-child {
+    font-size: 24px;
+    text-wrap: pretty;
+}
+
+.Att{
+    font-family: "Open Sans", sans-serif;
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 500;
+    background: #fdc613;
+    border-radius: 50px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-wrap: nowrap;
+    text-transform: capitalize;
+    user-select: none;
+    width: max-content;
+}
+.Att svg{
+    width: 16px;
+    height: 16px;
+    padding: 2px 0 0 0;
+}
+.Att svg path{
+    fill: #081d5c;
+}
+.Att.acc svg path{
+    fill: white;
+}
+.Att.acc{
+    background: #00a001;
+    color: white;
+}
+.Att.ref svg path{
+    fill: white;
+}
+.Att.ref{
+    background: #a80404;
+    color: white;
+}
+.Att.ter {
+    background: #1359fd;
+    color: white;
+}
+.Att.ter path{
+    fill : white !important;
+}
+
+.value{
+    font-size: 20px;
+    font-weight: 400;
+}
+.sup{
+    margin: 10px 10px;
+    height: 1px;
+    background-color: #081d5c;
+}
+button.download-btn svg {
+    width: 20px;
+    height:20px;
+}
+button.download-btn svg path {
+    fill: #081d5c;
+}
+button.download-btn {
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin: 5px 20%;
+    background: #d4a000;
+    color: #081d5c;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+button.download-btn:hover {
+    background: #f9c31c;
+}
+@media screen and (max-width:700px) {
+    span.prec {
+        margin-right: 0;
+    }
+    .inscri-from-log {
+        width: 400px;
+        font-size: 15px;
+    }
+    span.inscri-lien {
+        font-size: 16px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    .form-container {
+        width: 420px !important;
+        box-shadow: 0px 0px 7px -2px #113399 !important;
+    }
+    .form-container form {
+        width: 420px;
+    }
+    button.btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    .value {
+        font-size: 15px;
+    }
+    .key {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:520px) {
+    h2 span:first-child {
+        font-size: 16px;
+        text-wrap: pretty;
+    }
+    .Att {
+        font-size: 14px;
+    }
+    .Att svg {
+        width: 14px;
+        height: 14px;
+    }
+    span.prec span {
+        display: none;
+    }
+    .inscri-from-log {
+        width: 300px;
+    }
+    .form-container {
+        width: 320px !important;
+        padding: 15px 30px 30px !important;
+    }
+    .form-container form {
+        width: auto !important;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    h2.s2 {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+    h2.s2 svg{
+        height: 20px;
+        width: 20px;
+    }
+    select, select option {
+        font-size: 14px !important; 
+    }
+    label {
+        font-size: 18px;
+    }
+    button.download-btn{
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 10%;
+        background: #d4a000;
+        color: #081d5c;
+        text-transform: uppercase;
+        gap: 5px;
+    }
+    button.download-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+@media screen and (max-width:412px) {
+    .inscri-from-log {
+        width: 230px;
+        font-size: 13px;
+    }
+    span.inscri-lien{
+        font-size: 14px;
+    }
+    .form-container {
+        width: 250px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .form-container form {
+        width: 250px !important;
+        gap: 10px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+        width: 250px;
+    }
+    form>div {
+        width: 250px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .text-zone  {
+        font-size: 14px !important;
+        padding-left: 5px;
+    }
+    select {
+        font-size: 10px !important;
+    }
+    h2 span:first-child {
+        font-size: 14px;
+    }
+}
+input#fiche_reponse {
+    padding: 8px 25px;
+}
+
+
+span.cin {
+    background: #003b90;
+    color: #ffffff;
+    text-transform: uppercase;
+    border-radius: 8px;
+    padding: 0 5px;
+}
+span.psprt {
+    background: #004e00;
+    color: #ffffff;
+    text-transform: uppercase;
+    border-radius: 8px;
+    padding: 0 5px;
+}
+
+table {
+    width: -webkit-fill-available;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 20px;
+}
+
+tr{
+    border: solid #0f3c7ca3;
+    border-width: 1px 0;
+}
+tr:hover{
+    background-color: #f2f2f2;;
+}
+tr:first-child,tr:last-child{
+    border-width : 0px 0 ;
+}
+th{
+    
+    width: 40%;
+}
+th,td{
+    text-align: left;
+    padding: 15px 10px;
+}
+td{
+    font-weight : 500;
+    text-transform: capitalize; 
+}
+.th-titre{
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font: 24px;
+    background-color: #f4ebeb;
+}
+td .Att{
+    width: max-content;
+}
+td.reponse{
+    display: grid;
+    align-items: center;
+    gap: 5%;
+}
+.imprimer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    fill: #113399 ;
+    cursor: pointer;
+}
+.imprimer svg{
+    width: 16px;
+    height: 16px;
+}  
+.imprimer:hover{
+    background-color: #113399;
+    color: white;
+    fill: white;
+}
+.sf{
+    gap : 0px !important;
+    margin: 0 !important;
+}
+.Att.ref.del{
+    margin: auto;
+}
+
+
+
+@keyframes rotate {
+    to {
+        transform: rotate(1turn);
+    }
+}
+.rot{
+    animation: 0.5s rotate infinite linear;
+
+}
+.rot {
+    color: darkgreen !important;
+}
+.send{
+    background-color: #003da0 !important;
+    color: white;
+}
+.imbtn{
+    padding: 10px 15px !important;
+    border-radius: 10px !important;
+    font-size: 18px;
+}

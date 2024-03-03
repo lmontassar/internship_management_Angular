@@ -1,0 +1,268 @@
+.form-container {
+    width: 620px;
+    margin: auto;
+    margin-bottom:30px;
+    margin-top: 25px;
+    box-shadow: 0px 0px 22px -10px #113399;
+    padding: 20px 20px 50px;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 15px;
+    transition: 0.3s;
+}
+form {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 25px;
+    width: 95%;
+    margin: auto;
+    transition: 0.3s;
+}
+h2 {
+    width: max-content;
+}
+form>div {
+    display: grid;
+    grid-template-columns: auto;
+}
+label {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.text-zone {
+    border: 0;
+    border-bottom: 2px solid #fdc613;
+}
+.text-zone {
+    border: 0;
+    border-bottom: 2px solid #fdc613;
+    transition: 0.3s;
+    outline: none;
+    padding: 8px 25px;
+    font-size: 20px;
+    color: #081d5c;
+}
+.text-zone:focus {
+    border-bottom: 2px solid #113399;
+    transition: 0.3s;
+}
+.fullname>div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.input-invalid {
+    border-color: red !important;
+}
+small.invalid {
+    margin-left: 10px;
+    color: #b90000;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+button.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #fdc613;
+    background-color: #081d5c;
+    border: 0;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+button.btn:hover {
+    color: #ffffff;
+    background-color: #1f3987;
+}
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #081d5c;
+    cursor: pointer;
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: inherit;
+}
+select option {
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+h2 {
+    width: auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+}
+span.prec {
+    font-size: 16px;
+    margin-right: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+span.prec svg {
+    width: 16px;
+    height: 16px;
+    fill: #081d5c;
+}
+.inscri-from-log {
+    font-size: 17px;
+    text-wrap: wrap;
+}
+span.inscri-lien {
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.attribute {
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid #081d5c;
+    border-radius: 0px;
+    padding: 10px 25px;
+    justify-content: space-between;
+    transition: 0.1s;
+    text-transform: capitalize;
+}
+.attribute svg{
+    width: 16px;
+    height: 16px;
+}
+.attribute svg path{
+    fill: #081d5c;
+}
+.attribute:hover{
+    background: #081d5c;
+    color: #fdc613;
+}
+.attribute:hover svg path{
+    fill: #fdc613;
+}
+.succ-modif {
+    color: darkgreen;
+    font-weight: 500;
+}
+
+
+
+@media screen and (max-width:700px) {
+    span.prec {
+        margin-right: 0;
+    }
+    .inscri-from-log {
+        width: 400px;
+        font-size: 15px;
+    }
+    span.inscri-lien {
+        font-size: 16px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    .form-container {
+        width: calc(95% - 40px) !important;
+        box-shadow: 0px 0px 7px -2px #113399 !important;
+    }
+    button.btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:520px) {
+    .attribute{
+        font-size: 16px;
+    }
+    span.prec span {
+        display: none;
+    }
+    .inscri-from-log {
+        width: 300px;
+    }
+    .form-container {
+        width: calc(95% - 60px) !important;
+        padding: 15px 30px 30px !important;
+           gap: 5px;
+    }
+    form {
+        width: 100% !important;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    h2.s2 {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+    h2.s2 svg{
+        height: 20px;
+        width: 20px;
+    }
+    select, select option {
+        font-size: 14px !important; 
+    }
+    label {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width:412px) {
+    .inscri-from-log {
+        width: 230px;
+        font-size: 13px;
+    }
+    span.inscri-lien{
+        font-size: 14px;
+    }
+    .form-container {
+        width: calc(95% - 40px) !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    form {
+        width: 100% !important;
+        gap: 10px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+        width: 100%;
+    }
+    form>div {
+        width: 100%;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .text-zone  {
+        font-size: 14px !important;
+        padding-left: 5px;
+    }
+    select {
+        font-size: 10px !important;
+    }
+}

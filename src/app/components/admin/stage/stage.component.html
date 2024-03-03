@@ -1,0 +1,396 @@
+@if(notFound){
+    stage not found
+}@else if( waiting){
+    @if(open_fichereponse){
+        <app-reponse-pdf></app-reponse-pdf>
+    }
+    @if(open_attestation){
+        <app-attestation-pdf></app-attestation-pdf>
+    }
+    <div class="form-container">
+        <h2>
+            @if( 1 ){
+                <span>Demande de Stage</span>
+            }@else if( -2 ){       
+            }
+        </h2>
+        <table>
+            <tr>
+                <th>Référence</th>
+                <td>{{  stage.id}}/{{stage.date_demande | date:'yyyy'}}</td>
+            </tr>
+            <tr>
+                <th>état</th>
+                <td>
+                    @switch(stage.etat){
+                        
+                        @case(0){
+                            <span class="Att">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                </svg>
+                                En attente 
+                            </span>
+                        }@case(1){
+                            <span class="Att acc">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                </svg>
+                                Accepté provisoirement
+                            </span>
+                        }@case(2) {
+                            <span class="Att">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                </svg>
+                                En attente - confirmation
+                            </span>
+                        }@case( 3 ){
+                            @if( enstage(stage.date_debut,stage.date_fin) ){
+                                <span class="Att">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                    </svg>
+                                    Encours de stage...
+                                </span>
+                            }@else if( afterstage(stage.date_fin) ){
+                                <span class="Att">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                    </svg>
+                                    En Attente - Attestation
+                                </span>
+                            }@else{
+                                <span class="Att acc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                    </svg>
+                                    Accepté définitivement
+                                </span>
+                            }
+                        }@case(4){
+                            <span class="Att">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                </svg>
+                                En Attente - Attestation
+                            </span>
+                        }@case(5){
+                            <span class="Att ter">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                </svg>
+                                Terminé
+                            </span>
+                        }
+                        @case(-2){
+                            <span class="Att ref">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                                </svg>
+                                Refusé
+                            </span>
+                        }@case(-3){
+                            <span class="Att ref">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                                </svg>
+                                Refusé
+                            </span>
+                        }
+                    }
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Date de demande</th>
+                <td>{{stage.date_demande | date:"dd-MM-yyyy hh:mm"}}</td>
+            </tr>
+            @if( stage.date_reponse){
+                <tr>
+                    <th>Date de réponse:</th>
+                    <td>{{stage.date_reponse | date:"dd-MM-yyyy hh:mm"}}</td>
+                </tr>
+            }
+            <tr>
+                <th>Nationalité</th>
+                <td>{{stage.stagiaire.nationalite.name}}</td>
+
+            </tr>    
+            <tr>
+                <th>
+                    @if(stage.stagiaire.cin){
+                        <span class="cin">cin</span> 
+                    }@else {
+                        <span class="psprt">Passeport</span>
+                    }
+                </th>
+                <td>
+                    @if(stage.stagiaire.cin){
+                        {{stage.stagiaire.cin}}
+                    }@else{
+                        {{stage.stagiaire.passport}}
+                    }
+                </td>
+            </tr>      
+            <tr>
+                <th>Nom et Prenom</th>
+                <td>{{stage.stagiaire.nom}} {{stage.stagiaire.prenom}}</td>
+            </tr>
+            <tr>
+                <th>institut</th>
+                <td>{{stage.stagiaire.institut}}</td>
+            </tr>
+            <tr>
+                <th>région</th>
+                <td>{{stage.stagiaire.region.region}}</td>
+            </tr>
+            <tr>
+                <th>filiere</th>
+                <td>{{stage.stagiaire.filiere}}</td>
+            </tr>
+            <tr>
+                <th>Numéro de téléphone</th>
+                <td>{{stage.stagiaire.tel}}</td>
+            </tr>
+            <tr>
+                <th>email</th>
+                <td>{{stage.stagiaire.email}}</td>
+            </tr>
+            <tr>
+                <th>Type de stage</th>
+                <td>{{stage.type}}</td>
+            </tr>
+            <tr>
+                <th>Periode de stage</th>
+                <td>{{stage.date_debut | date:"dd/MM/yyyy"}} - {{stage.date_fin  | date:"dd/MM/yyyy"}}</td>
+            </tr>
+            <tr>
+                <th>lieu et région proposée</th>
+                <td>{{stage.lieu_proposee}} - {{stage.region.region}}</td>
+            </tr>
+            <tr>
+                <th>Demande de stage</th>
+                <td> 
+                    <span class="imprimer" (click)="ShowPDF(stage.id_fiche_reponse,'Demande de stage')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                        </svg>
+                        Imprimer
+                    </span> 
+                </td>
+            </tr>           
+            <!-- en etat 1 -->
+             @if(  stage.etat > 0 ) {
+
+                <tr>
+                    <th>fiche réponse</th>
+                    <td> 
+                        <span class="imprimer" (click)="ShowPDF(stage.id_fiche_reponse_signe,'Fiche réponse')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                            </svg>
+                            Imprimer
+                        </span> 
+                    </td>
+                </tr>
+                @if( stage.id_lettre_affectation ){
+                    <tr>
+                        <th>Lettre d'affectation</th>
+                        <td> 
+                            <span class="imprimer" (click)="ShowPDF(stage.id_lettre_affectation,'Lettre d\'affectation')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                                </svg>
+                                Imprimer
+                            </span> 
+                        </td>
+                    </tr>
+                }
+                @if( stage.id_attestation ){
+                    <tr>
+                        <th>Attestation de fin de stage</th>
+                        <td> 
+                            <span class="imprimer" (click)="ShowPDF( stage.id_attestation ,'Attestation de fin de stage')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                                </svg>
+                                Imprimer
+                            </span>
+                        </td>
+                    </tr>
+                }    
+            }
+            @if(stage.etat >= 0){
+                <!--choisir un poste -->
+                <tr>
+                    <th class="th-titre">poste de poste choisi</th>
+                    <td class="th-titre">
+                        <div class="v">
+                            @if( posteSelected != null){
+                                @if(  posteSelected.id != stage.poste.id && stage.etat < 5 ){
+                                    @if( encadrantSelected == null || encadrantSelected.id == stage.encadrant.id   ){
+                                        <span class="Att acc appliquer" (click)="editposteReq()" >
+                                            <fa-icon [icon]="pen"></fa-icon>
+                                            Appliquer
+                                        </span>
+                                    }
+                                }
+                            }
+                            @if(  supp1Active && stage.etat < 5){
+                                <span class="Att ref del" (click)="deleteposte()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                    </svg>
+                                    Supprimer
+                                </span>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>region</th>
+                    <td>
+                        <select name="regionS" id="regionS" (change)="filterbyRegion($event)">
+                            <option value="0" selected >choisir un region</option>
+                            @for( r of regionfiltred ;track regionfiltred.id ){
+                                <option [value]="r.id" >{{r.region}}</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>poste</th>
+                    <td>
+                        <select name="posteS" id="posteS" (change)="filterByposte($event)">
+                            <option value="0">choisir un poste</option>
+                            @for( b of postefiltred ;track postefiltred.id ){
+                                <option [value]="b.id" >{{b.id}}-{{b.nom_residence}}</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                @if( posteSelected != null){
+                    
+                    <tr>
+                        <th>Nom de résidence</th>
+                        <td>{{ posteSelected.nom_residence }}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>
+                            {{ posteSelected.adresse }}
+                        </td>
+                    </tr>
+
+
+                }
+            <!--end -->
+            <!--choisir un encadrant-->
+                <tr>
+                    <th class="th-titre">Encadrant choisi</th>
+                    <td class="th-titre">
+                        <div class="v">
+                            @if( encadrantSelected != null ){
+                                @if( encadrantSelected.id !=  stage.encadrant.id  && stage.etat < 5){
+                                    <span class="Att acc appliquer" (click)="editEncadrantReq()">
+                                        <fa-icon [icon]="pen"></fa-icon>
+                                        Appliquer
+                                    </span>
+                                }
+                            }
+                            @if(  supp2Active  && stage.etat < 5 ){
+                                <span class="Att ref del" (click)="deleteEncadrant()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                    </svg>
+                                    Supprimer
+                                </span>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Encadrant</th>
+                    <td>
+                        <select name="encadrantS" id="encadrantS" (change)="filterByEncadrant($event)">
+                            <option value="0">choisir un encadrant</option>
+                            @for(e of encadrantfiltred ; track e.id){
+                                <option [value]="e.id">{{e.nom}} {{e.prenom}}</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                @if( encadrantSelected != null ){
+                    <tr>
+                        <th>email</th>
+                        <td>{{encadrantSelected.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>numéro de téléphone</th>
+                        <td>{{encadrantSelected.tel}}</td>
+                    </tr>
+                    <tr>
+                        <th>Specialite</th>
+                        <td>{{encadrantSelected.specialite}}</td>
+                    </tr>
+
+                }
+            <!--choisir un encadrant-->
+            }
+            @if(stage.etat == 0){
+                <tr>
+                    <th class="th-titre" colspan="2" rowspan="2">
+                        <div class="v c">
+                            <span class="Att send imbtn" (click)="openfichereponse()">
+                                <fa-icon [icon]="acc"></fa-icon>
+                                Accepter
+                            </span>
+                            <span class="Att ref imbtn "  (click)="Refuser()">
+                                <fa-icon [icon]="ref"></fa-icon>
+                                refuser
+                            </span>
+                        </div>
+                    </th>
+                </tr>
+            }
+            @if( afterstage(stage.date_fin) && ( stage.etat == 3 || stage.etat == 4 )  ){
+                <tr>
+                    <th class="th-titre" colspan="2">L'attestation de fin de stage </th>
+                </tr>
+                <tr>
+                    <th>
+                        Verifier et envoyer l'attestation
+                    </th>
+                    <td class="reponse" >
+                            <span class="Att send imbtn" (click)="openattestation()">
+                                <fa-icon [icon]="paper"></fa-icon>
+                                Envoyer
+                            </span>
+                    </td>
+                </tr>
+            }
+            @if(stage.etat == 2){
+                <tr>
+                    <th class="th-titre" colspan="2">
+                        <div class="v c">
+                            <span class="Att send imbtn" (click)="Accepter2()">
+                                <fa-icon [icon]="acc"></fa-icon>
+                                Confirmer
+                            </span>
+                            <span class="Att ref imbtn" (click)="Refuser2()">
+                                <fa-icon [icon]="ref"></fa-icon>
+                                Refuser
+                            </span>
+                            @if( ErrMsgb4 ){
+                                <small class="invalid">Vous devez choisir un poste de poste pour ce stage</small>
+                            }
+                        </div>
+                    </th>
+                </tr>
+                
+            }
+            <!-- end -->
+        </table>
+    </div>
+}

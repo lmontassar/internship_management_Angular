@@ -1,0 +1,30 @@
+@if(_adminSer.blobToView){
+
+<div class="popup" id="popupContainer">
+    <div class="header">
+        <span class="title">
+            <h2>
+            {{_adminSer.title}}
+            </h2>
+        </span>
+        <div class="d2">
+            <span class="tel" (click)="Download()">
+                <fa-icon [icon]="downicon"></fa-icon>
+                Télécharger
+            </span>
+            <span class="ter" (click)="_adminSer.closePDF()">        
+                Terminer
+            </span>
+        </div>
+    </div>
+    <ngx-extended-pdf-viewer 
+        class="contenu"
+        [src]="src"
+        [height]="'calc(90% + 20px)'"
+    >
+    </ngx-extended-pdf-viewer>
+
+</div>
+
+<div class="blurBackground" id="blurBackground" (click)="_adminSer.closePDF()"></div>
+}

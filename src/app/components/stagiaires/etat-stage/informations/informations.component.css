@@ -1,0 +1,357 @@
+.form-container {
+    width: 620px;
+    margin: auto;
+    margin-bottom:30px;
+    margin-top: 25px;
+    box-shadow: 0px 0px 22px -10px #113399;
+    padding: 20px 20px 20px;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 15px;
+    transition: 0.3s;
+}
+.form-container form {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 25px;
+    width: 95%;
+    margin: auto;
+    transition: 0.3s;
+}
+h2 {
+    width: max-content;
+}
+form>div {
+    display: grid;
+    grid-template-columns: auto;
+}
+label {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.text-zone {
+    border: 0;
+    border-bottom: 2px solid #fdc613;
+}
+.text-zone {
+    border: 0;
+    border-bottom: 2px solid #fdc613;
+    transition: 0.3s;
+    outline: none;
+    padding: 8px 25px;
+    font-size: 20px;
+    color: #081d5c;
+}
+.text-zone:focus {
+    border-bottom: 2px solid #113399;
+    transition: 0.3s;
+}
+.fullname>div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.input-invalid {
+    border-color: red !important;
+}
+small.invalid {
+    margin-left: 10px;
+    color: #b90000;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+button.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #fdc613;
+    background-color: #081d5c;
+    border: 0;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+button.btn:hover {
+    color: #ffffff;
+    background-color: #1f3987;
+}
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #081d5c;
+    cursor: pointer;
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: inherit;
+}
+select option {
+    color: #081d5c;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+h2 {
+    width: auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+span.prec {
+    font-size: 16px;
+    margin-right: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+span.prec svg {
+    width: 16px;
+    height: 16px;
+    fill: #081d5c;
+}
+.inscri-from-log {
+    font-size: 17px;
+    text-wrap: wrap;
+}
+span.inscri-lien {
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.key{
+    font-size: 20px;
+    font-weight: 600;
+}
+.Att{
+    font-size: 16px;
+    font-weight: 500;
+    background: #fdc613;
+    border-radius: 50px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-wrap: nowrap;
+    text-transform: capitalize;
+}
+h2 span:first-child {
+    font-size: 24px;
+    text-wrap: pretty;
+}
+.Att svg{
+    width: 16px;
+    height: 16px;
+    padding: 2px 0 0 0;
+}
+.Att svg path{
+    fill: #081d5c;
+}
+.Att.acc svg path{
+    fill: white;
+}
+.Att.acc{
+    background: #00a001;
+    color: white;
+}
+.Att.ref svg path{
+    fill: white;
+}
+.Att.ref{
+    background: #a80404;
+    color: white;
+}
+.Att.ter {
+    background: #1359fd;
+    color: white;
+}
+.Att.ter path{
+    fill : white !important;
+}
+.value{
+    font-size: 20px;
+    font-weight: 400;
+}
+.sup{
+    margin: 10px 10px;
+    height: 1px;
+    background-color: #081d5c;
+}
+button.download-btn svg {
+    width: 20px;
+    height:20px;
+}
+button.download-btn svg path {
+    fill: #081d5c;
+}
+button.download-btn {
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin: 5px 20%;
+    background: #d4a000;
+    color: #081d5c;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+button.download-btn:hover {
+    background: #f9c31c;
+}
+@media screen and (max-width:700px) {
+    span.prec {
+        margin-right: 0;
+    }
+    .inscri-from-log {
+        width: 400px;
+        font-size: 15px;
+    }
+    span.inscri-lien {
+        font-size: 16px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    .form-container {
+        width: 420px !important;
+        box-shadow: 0px 0px 7px -2px #113399 !important;
+    }
+    .form-container form {
+        width: 420px;
+    }
+    button.btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    .value {
+        font-size: 15px;
+    }
+    .key {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:520px) {
+    h2 span:first-child {
+        font-size: 16px;
+        text-wrap: pretty;
+    }
+    .Att {
+        font-size: 14px;
+    }
+    .Att svg {
+        width: 14px;
+        height: 14px;
+    }
+    span.prec span {
+        display: none;
+    }
+    .inscri-from-log {
+        width: 100%;
+    }
+    .form-container {
+        width: calc(95% - 60px) !important;
+        padding: 15px 30px 30px !important;
+    }
+    .form-container form {
+        width: 100% !important;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+    }
+    h2.s2 {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+    h2.s2 svg{
+        height: 20px;
+        width: 20px;
+    }
+    select, select option {
+        font-size: 14px !important; 
+    }
+    label {
+        font-size: 18px;
+    }
+    button.download-btn{
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 10%;
+        background: #d4a000;
+        color: #081d5c;
+        text-transform: uppercase;
+        gap: 5px;
+    }
+    button.download-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+@media screen and (max-width:412px) {
+    .inscri-from-log {
+        width: 230px;
+        font-size: 13px;
+    }
+    span.inscri-lien{
+        font-size: 14px;
+    }
+    .form-container {
+        width: calc(95% - 60px) !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .form-container form {
+        width: 100% !important;
+        gap: 10px;
+    }
+    .fullname>div {
+        grid-template-columns: auto !important;
+        gap: 10px;
+        width: 250px;
+    }
+    form>div {
+        width: 100%;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .text-zone  {
+        font-size: 14px !important;
+        padding-left: 5px;
+    }
+    select {
+        font-size: 10px !important;
+    }
+    h2 span:first-child {
+        font-size: 14px;
+    }
+}
+input#fiche_reponse {
+    padding: 8px 25px;
+}

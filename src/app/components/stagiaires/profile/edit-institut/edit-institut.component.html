@@ -1,0 +1,22 @@
+<form #editinstitutForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="z-institut">Institut</label>
+        <input #institut="ngModel" [class.input-invalid]="institut.touched && _stagiaireSer.testAttribute(institut.value , 2)" class="text-zone"  type="text" id="z-institut" name="institut" ngModel placeholder="Tapez votre institut">    
+        @if( institut.touched && _stagiaireSer.testAttribute(institut.value , 2)  ){
+            <small class="invalid">Veuillez saisir valid institut (obligatoire)</small> 
+        } 
+    </div>
+    <div>
+        <label for="z-f">Filière</label>
+        <input #filiere="ngModel" [class.input-invalid]="filiere.touched && _stagiaireSer.testAttribute(filiere.value , 2)" class="text-zone"  type="text" id="z-f" name="filiere" ngModel placeholder="Tapez votre filiere" >    
+        @if( filiere.touched && _stagiaireSer.testAttribute(filiere.value , 2)){
+            <small class="invalid">Veuillez saisir valid filiere (obligatoire).</small>
+        }
+    </div>
+    @if( changed  ){
+        <div class="succ-modif">L'institut a été modifiée avec succès.</div>
+    }
+    <div>
+        <button button class="btn" type="submit">Modifier</button>
+    </div>
+</form>

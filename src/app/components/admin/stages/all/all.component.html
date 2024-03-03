@@ -1,0 +1,291 @@
+<div class="title">
+    <h2>Toutes les stages ({{Stages.length}})</h2>
+    <form #Sf="ngForm">
+        <input ngModel type="text" name="search" class="search" placeholder="recherche" (keyup)="search()">
+    </form>
+</div>
+<!--
+<div class="ff">
+    <div class="filter"  [class.open]="filterdisplay" >
+        <div class="f1" >
+            <span (click)="filteract()" class="ftitre" >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
+                Filtre
+            </span>
+            
+            @if( filterdisplay == true ){
+                <div class="f-contenu">
+                    <div class="once">
+                        <span>etat</span>
+                        <ul>
+                            <li >
+                                <input type="checkbox"  [(ngModel)]="filter.etat[0]">
+                                en attente
+                            </li>
+                            <li>
+                                <input type="checkbox" [(ngModel)]="filter.etat[1]">
+                                accepté
+                            </li>
+                            <li>
+                                <input type="checkbox" [(ngModel)]="filter.etat[2]">
+                                refusé
+                            </li>
+                            <li>
+                                <input type="checkbox" [(ngModel)]="filter.etat[3]">
+                                terminé
+                            </li>
+                            <li>
+                                <input type="checkbox"   [(ngModel)]="filter.etat[4]">
+                                en stage
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="once">
+                        <span>date debut</span>
+                        <div>
+                            <label for="ddi">du</label>
+                            <input type="date" id="ddi" class="text-zone" [(ngModel)]="filter.date_debut[0]">
+                            <label for="ddf">au</label>
+                            <input type="date"id="ddf" class="text-zone"  [(ngModel)]="filter.date_debut[1]">
+                        </div>
+                    </div>
+                    <div class="once">
+                        <span>date fin</span>
+                        <div>
+                            <label for="dfi">du</label>
+                            <input type="date" id="dfi" class="text-zone"  [(ngModel)]="filter.date_fin[0]">
+                            <label for="dff">au</label>
+                            <input type="date"id="dff" class="text-zone"  [(ngModel)]="filter.date_fin[1]">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" (click)="filtrer();filteract()" >filtrer</button>
+            }
+        </div>
+    </div>
+    <div>
+        @if( filterdisplay == false && filterActive  ){
+            <span class="annuler" (click)="resetFilter()">
+                Annuler
+            </span>
+        }
+    </div>
+</div>
+-->
+<div class="block-filter">
+    <span>Filtre</span>
+    <div>
+        <select name="" id="" [(ngModel)]="filter2.etat">
+            <option value="0">Etat</option>
+            <option value="1">Refusé</option>
+            <option value="2">En-attente</option>
+            <option value="3">Accepté</option>
+            <option value="4">Terminé</option>
+            <option value="5">Stage encours</option>
+        </select>
+        periode de stage du
+        <select name="" id=""  [(ngModel)]="filter2.date_debut[0]">
+            <option value="0">mois</option>
+            @for(month of months;track $index){
+                <option [value]="$index+1">{{month}}</option>
+            }
+        </select>-
+        <select name="" id="" [(ngModel)]="filter2.date_debut[1]">
+            <option value="0">année</option>
+            @for(year of years ;track $index){
+                <option [value]="year">{{year}}</option>
+            }
+        </select>
+        au
+        <select name="" id="" [(ngModel)]="filter2.date_fin[0]">
+            <option value="0">mois</option>
+            @for(month of months;track $index){
+                <option [value]="$index+1">{{month}}</option>
+            }
+        </select>-
+        <select name="" id="" [(ngModel)]="filter2.date_fin[1]">
+            <option value="0">année</option>
+            @for(year of years ;track $index){
+                <option [value]="year">{{year}}</option>
+            }
+        </select>
+        <button (click)="filtrer2()">ok</button>
+    </div>
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            @if(StagesFiltred.length == 0){
+                <th> Aucune de stage </th>
+            }@else{
+                <th (click)="sort(10)">
+                    @if(ca1 == 10){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    Réference
+                </th>
+                <th (click)="sort(0)">
+                    @if(ca1 == 0){
+                        @if(srt == -1){
+                            <span class="cin">cin</span>
+                        }@else {
+                            <span class="psprt">psp</span>
+                        }
+                    }    
+                    Identifier
+                </th>
+                <th (click)="sort(1)">
+                    @if(ca1 == 1){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    Date de demande
+                </th>
+                <th>Nom et Prenom</th>
+                <th (click)="sort(3)">Institut</th>
+                <th (click)="sort(4)">
+                    Région
+                </th>
+                <th (click)="sort(6)">type</th>
+                <th (click)="sort(7)">
+                    @if(srtdf != null){
+                        @if(srtdf[1] == 1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                        @if(srtdf[0] == 1){
+                            periode (date fin) 
+                        }@else{
+                            periode (date debut)
+                        }
+                    }@else {
+                        periode 
+                    }
+
+                </th>
+                <th >poste</th>
+                <th (click)="sort(8)">etat</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+    @for(stage of StagesFiltred; track stage.id ){
+        @if(stage.stagiaire){
+            <tr routerLink="/stageRep/{{stage.id}}">
+                <td>{{stage.id}}/{{stage.date_demande | date:'yyyy' }}
+                </td>
+                <td>
+                    @if(stage.stagiaire.cin){
+                        <span class="cin">cin</span>{{stage.stagiaire.cin}}
+                    }@else{
+                        <span class="psprt">psp</span> {{stage.stagiaire.passport}}
+                    }
+                </td>
+                <td>{{stage.date_demande | date:'yyyy/MM/dd'}}</td>
+                <td>{{stage.stagiaire.nom}} {{stage.stagiaire.prenom}}</td>
+                <td>{{stage.stagiaire.institut}}</td>
+
+                <td>{{stage.region.region}}</td>
+                <td>{{stage.type}}</td>
+                
+                <td>{{stage.date_debut | date:'dd/MM/yyyy'}} - {{stage.date_fin | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    @if(stage.poste){
+                        {{stage.poste.nom_residence}}
+                    }@else {
+                        ---
+                    }
+                </td>
+                <td>
+                    @switch(stage.etat){
+                        @case(0){
+                            <span class="Att">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                </svg>
+                                En attente 
+                            </span>
+                        }@case(1){
+                            <span class="Att acc">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                </svg>
+                                Accepté P
+                            </span>
+                        }@case(2) {
+                            <span class="Att">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                    </svg>
+                                    en attente
+                            </span>
+                        }@case( 3 ){
+                            @if( enstage(stage.date_debut,stage.date_fin) ){
+                                <span class="Att">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    encours
+                                </span>
+                            }@else if( afterstage(stage.date_fin) ){
+                                <span class="Att">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                    </svg>
+                                    En attente
+                                </span>
+                            }@else{
+                                <span class="Att acc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                    </svg>
+                                    Accepté D
+                                </span>
+                            }
+                        }@case(4){
+                            <span class="Att">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/>
+                                </svg>
+                                En Attente
+                            </span>
+                        }@case(5){
+                            <span class="Att ter">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                                </svg>
+                                Terminé
+                            </span>
+                        }
+                        @case(-2){
+                            <span class="Att ref">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                                </svg>
+                                Refusé
+                            </span>
+                        }@case(-3){
+                            <span class="Att ref">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                                </svg>
+                                Refusé
+                            </span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+<form #editadresseForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="z-r">Région</label> 
+                
+        <select class="text-zone" [class.input-invalid]="id_region.touched && id_region.value == 0" id="z-r" name="id_region" #id_region="ngModel" ngModel> 
+            <option value="0">choisir un region</option>
+            @for (region of regions; track region.id ) {
+                <option [value]="region.id">{{region.region}}</option>
+            }
+        </select>
+        @if( id_region.touched && id_region.value == 0 ){
+            <small class="invalid">Veuillez saisir valid region (obligatoire)</small> 
+        }
+    </div>
+
+        @if( changed  ){
+            <div class="succ-modif">L'adresse a été modifiée avec succès.</div>
+        }
+    <div>
+        <button button class="btn" type="submit">Modifier</button>
+    </div>
+</form>

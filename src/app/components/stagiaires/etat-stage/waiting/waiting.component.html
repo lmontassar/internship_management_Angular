@@ -1,0 +1,89 @@
+@if(stage != null){
+    <div class="form-container">
+        <h2>
+            
+            @switch(stage.etat){  
+                @case(0){
+                    <span>
+                        Félicitations, votre demande a été envoyée avec succès.
+                    </span>
+                    <span class="Att">
+                        <fa-icon [icon]="wait"></fa-icon>
+                        en attente 
+                    </span>
+                }@case(1){
+                    <span>
+                        Félicitations, votre demande a été acceptée.
+                    </span>
+                    <span class="Att acc">
+                        <fa-icon [icon]="ter"></fa-icon>
+                        Accepté
+                    </span>
+                }@case(-2){
+                    <span>Votre demande a été refusée.</span>
+                    <span class="Att ref">
+                        <fa-icon [icon]="ref"></fa-icon>
+                        refusé
+                    </span>
+                }
+            }
+        </h2>
+        <div>
+            <span class="key">Référence: </span>
+            <span class="value">{{stage.id}}/{{stage.date_demande | date:'yyyy'}}</span>
+        </div>
+        <div>
+            <span class="key">Type de stage: </span>
+            <span class="value">{{stage.type}}</span>
+        </div>
+        <div>
+            <span class="key">Periode de stage: </span> 
+            <span class="value">{{stage.date_debut | date:'yyyy-MM-dd' }} à {{stage.date_fin | date:'yyyy-MM-dd'}}</span>
+        </div>     
+        @if(stage.etat <= -2){
+            <div class="sup"></div>
+            <div class="inscri-from-log">
+                <span class="inscri-messg">
+                    Je vous remercie pour votre intérêt à rejoindre notre entreprise en tant que stagiaire. Cependant, après une évaluation attentive, nous regrettons de vous informer que nous ne pouvons pas donner suite à votre demande de stage.
+                </span>
+            </div>
+        }
+        @if( stage.etat == 0 ){
+            <div class="inscri-from-log">
+                <span class="inscri-messg">
+                    Nous avons bien reçu votre demande de stage. Nous nous engageons à répondre rapidement. Vous serez informé(e) ultérieurement par courrier électronique, ou vous pourrez vérifier la réponse depuis votre compte personnel.
+                </span>
+            </div>
+        }@else if( stage.etat == 1){
+            <div class="sup"></div>
+            <form #fform="ngForm" (ngSubmit)="onSubmit()">
+                <div class="inscri-from-log">
+                    <span class="inscri-messg">
+                        <strong> Félicitations! Votre demande de stage a été initialement acceptée.</strong><br>
+                        Pour finaliser votre inscription, 
+                        veuillez télécharger la fiche de réponse au format PDF et nous faire parvenir votre <strong>lettre d'affectation</strong> dans les plus brefs délais. Nous vous prions de bien vouloir respecter cette étape afin de confirmer votre <strong>acceptation finale.</strong>
+                    </span>
+                </div>
+                <div>
+                    <label>Votre Fiche de Réponse</label>
+                    <button class="download-btn" type="button" (click)="download()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                        </svg>
+                        Telecharger
+                    </button>
+                </div>
+                <div>
+                    <label for="lettre_affectation">Attachement lettre d'affectation (.pdf)</label>
+                    <input  #la="ngModel" type="file" id="lettre_affectation" name="lettre_affectation" (change)="Select($event)" accept=".pdf" ngModel >
+                    @if( la.touched &&  file == null  ){
+                        <small class="invalid"> Veuillez sélectionnez le fichier de demande de stage (obligatoire)</small>
+                    }
+                </div>
+                <div>
+                    <button class="btn" type="submit">Soumettre</button>
+                </div>
+            </form>
+        }
+    </div>
+}

@@ -1,0 +1,32 @@
+<form #editidForm="ngForm" (submit)="onSubmit()">
+    <div>
+        <label for="">Identification</label>
+        <select name="c_id" id="" ngModel>
+            <option value="1">CIN (Carte d'identité nationale)</option>
+            <option value="2">PASSEPORT (étranger)</option>
+        </select>
+    </div>
+    @if( editidForm.value.c_id == 2 ){
+    <div>
+        <label for="z-passport">Numéro de passeport</label>
+        <input #passport="ngModel" class="text-zone" [class.input-invalid]="passport.touched && _stagiaireSer.testAttribute(passport.value , 3)" type="text" id="z-passport" name="passport" placeholder="Tapez votre numéro de passport" ngModel>
+        @if( passport.touched && _stagiaireSer.testAttribute(passport.value , 3)  ){
+            <small class="invalid">Veuillez saisir valid passport (obligatoire)</small>
+        }
+    </div>
+    } @if(editidForm.value.c_id == 1) {
+    <div>
+        <label for="z-cin">Carte d'identité nationale</label>
+        <input #cin="ngModel" [class.input-invalid]="cin.touched && _stagiaireSer.testAttribute(cin.value , 4)" class="text-zone"  type="text" id="z-cin" name="cin" placeholder="Tapez votre numéro de CIN" ngModel>
+        @if( cin.touched && _stagiaireSer.testAttribute(cin.value , 4) ){
+            <small class="invalid">Veuillez saisir valid cin (obligatoire)</small>
+        }
+    </div>
+    }
+    @if( changed  ){
+        <div class="succ-modif">L'Identificationa été modifiée avec succès.</div>
+    }
+    <div>
+        <button button class="btn" type="submit">Modifier</button>
+    </div>
+</form>

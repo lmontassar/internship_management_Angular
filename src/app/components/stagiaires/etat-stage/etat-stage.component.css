@@ -1,0 +1,117 @@
+.steps{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 620px ;
+    margin: auto;
+}
+.number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-weight: 800;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: #081d5c;
+    color: #fdc613;
+    box-shadow: 0px 0px 5px 1px #081D5E;
+    z-index: 99;
+    user-select: none;
+}
+.line{
+    width: 146px;
+    height: 3px;
+    background-color: #081d5c;
+    z-index: 98;
+}
+.number.active {
+    background-color: #081d5c;
+    color: #fdc613;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    
+}
+.number.active ~.number{
+    background-color: #255aa5;
+    color: white;
+}
+
+.number.active ~ .line {
+    background-color: #a1c6ea ; 
+}
+.number svg path{
+    fill:#fdc613 ;
+}  
+.number svg {
+    width: 28px;
+    height: 28px;
+}
+.stage span:first-child{
+    display: block;
+    font-size: 26px;
+    font-weight: 600;
+}
+.stage span:nth-child(2){
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+}
+input#fiche_reponse {
+    padding: 8px 25px;
+}
+
+@media screen and (max-width:700px) {
+    .steps{
+        width: 460px;
+    }
+    .line {
+        width: 93px;
+    }
+}
+@media screen and (max-width:520px) {
+    .steps{
+        width: 380px;
+    }
+    .line {
+        width:75px;
+    }   
+    .number{
+        width: 35px;
+        height: 35px;
+    }
+    .number.active {
+        width: 50px;
+        height: 50px;
+    }
+}
+@media screen and (max-width:412px) {
+    .steps {
+        width: 290px;
+    }
+    .line {
+        width: 51px;
+    }
+    .number{
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+    }
+    .number.active {
+        font-size: 24px;
+        width: 45px;
+        height: 45px;
+    }
+    .number svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+.number.ref.active {
+    background: #a80404;
+    color: white;
+    box-shadow: 0px 0px 5px 1px #a80404;
+    font-size: 35px;
+}

@@ -1,0 +1,169 @@
+@if(stage != null){
+<div class="form-container">
+    <h2>  
+        @switch(stage.etat){                
+            @case(2) {
+                <span>
+                    Votre lettre d'affectation a été envoyée.
+                </span>
+                <span class="Att">
+                    <fa-icon [icon]="wait"></fa-icon>
+                    en attente
+                </span>
+            }@case( 3 ){     
+                @if( enstage(stage.date_debut,stage.date_fin) ){
+                    <span>
+                        Votre période de stage a commencé.
+                    </span>
+                    <span class="Att">
+                        <fa-icon [icon]="wait"></fa-icon>
+                        encours de stage  
+                    </span>
+                }@else if( afterstage(stage.date_fin) ){
+                    <span>
+                        Votre période de stage est terminé.
+                    </span>
+                    <span class="Att">
+                        <fa-icon [icon]="wait"></fa-icon>
+                        En Attente
+                    </span>
+                }@else{
+                    <span>
+                        Votre demande a été confirmée.
+                    </span>
+                    <span class="Att acc">
+                        <fa-icon [icon]="ter"></fa-icon>
+                        Accepté
+                    </span>
+                }
+            }@case(4){
+                <span>
+                    Votre demande d'attestation a été envoyée.
+                </span>
+                <span class="Att">
+                    <fa-icon [icon]="wait"></fa-icon>
+                    En Attente
+                </span>
+            }@case(5){               
+                <span>
+                    Votre attestation a été publiée.
+                </span>
+                <span class="Att ter">
+                    <fa-icon [icon]="ter"></fa-icon>
+                    Terminé
+                </span>
+            }@case(-3){
+                <span>Votre demande a été refusée.</span>
+                <span class="Att ref">
+                    <fa-icon [icon]="ref"></fa-icon>
+                    refusé
+                </span>
+            }
+        }
+    </h2>
+        <div>
+            <span class="key">Référence: </span>
+            <span class="value">{{stage.id}}/{{stage.date_demande | date:'yyyy'}}</span>
+        </div>
+        <div>
+            <span class="key">Type de stage: </span>
+            <span class="value">{{stage.type}}</span>
+        </div>
+        <div>
+            <span class="key">Periode de stage: </span> 
+            <span class="value">{{stage.date_debut | date:'yyyy-MM-dd' }} à {{stage.date_fin | date:'yyyy-MM-dd'}}</span>
+        </div>
+    
+    @if(stage.etat >= 3){
+        @if( stage.encadrant  ){
+            <div>
+                <span class="key">Encadrant: </span>
+                <span class="value">{{stage.encadrant.nom | titlecase}} {{stage.encadrant.prenom | titlecase}}</span>
+            </div>
+            <div>
+                <span class="key">numéro de téléphone: </span>
+                <span class="value">{{stage.encadrant.tel}}</span>
+            </div>
+            <div>
+                <span class="key">Email: </span>
+                <span class="value">{{stage.encadrant.email}}</span>
+            </div>
+        }
+        @if( stage.poste ){
+            <div>
+                <span class="key">Bureau: </span>
+                <span class="value">{{stage.poste.nom_residence}}</span>
+            </div>
+            <div>
+                <span class="key">Adresse: </span>
+                <span class="value">{{stage.poste.adresse}}</span>
+            </div>
+        }
+    }
+    <div class="sup"></div>
+    @if( stage.etat == 4){
+        <div class="inscri-from-log">
+            <span class="inscri-messg">
+                Merci d'avoir complété votre stage chez <strong>poste tunisienne!</strong><br> Nous sommes reconnaissants pour votre travail exceptionnel tout au long de cette période.
+                <br>Votre demande d'attestation de fin de stage a été prise en compte. Nous vous prions de bien vouloir patienter pendant que nous préparons ce document officiel, qui atteste de votre participation et de la qualité de votre travail au sein de notre organisation.    
+            </span>
+        </div>
+    }@else if( stage.etat == 5 ){
+        <div class="inscri-from-log">
+            <span class="inscri-messg">
+                
+                Merci d'avoir complété votre stage chez <strong>poste tunisienne!</strong><br><!-- Nous sommes reconnaissants pour votre travail exceptionnel tout au long de cette période.
+                Votre demande d'attestation de fin de stage a été prise en compte. Nous avons le plaisir de vous informer que votre attestation est prête. <br>-->
+                Vous pouvez télécharger votre attestation de stage cliquant sur le lien ci-dessous: 
+                
+                <form>
+                    <button class="download-btn" type="button" (click)="download()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                        </svg>
+                        Telecharger
+                    </button>
+                </form>
+            </span>
+        </div>
+    }@else if (stage.etat == 3){
+            @if( afterstage(stage.date_fin)  ){ 
+                <form #form="ngForm" (submit)="obsubmit()" >
+                    <div class="inscri-from-log">
+                        <span class="inscri-messg">
+                            Merci d'avoir complété votre stage chez <strong>poste tunisienne!</strong><br> Nous sommes reconnaissants pour votre travail exceptionnel tout au long de cette période.
+                            <br>Pour recevoir votre <strong> attestation de stage.</strong>    
+                        </span>
+                    </div>
+                    <div>
+                        <button class="btn" type="submit">Demander l'Attestation</button>
+                    </div>
+                </form>
+            }@else if( enstage( stage.date_debut,stage.date_fin ) ) {
+                <div class="inscri-from-log">
+                    <span class="inscri-messg">
+                        C'est avec plaisir que nous vous informons du début du stage. Nous accueillons <strong>{{_loginSer.user.nom}} {{_loginSer.user.prenom}}</strong> et lui souhaitons une expérience fructueuse parmi nous
+                    </span>
+                </div>
+            }@else{
+                <div class="inscri-from-log">
+                    <span class="inscri-messg">
+                        Félicitations ! Votre demande a été confirmée et votre stage débutera à l'heure prévue. Toutes les informations nécessaires sont ici
+                    </span>
+                </div>
+            }
+        }@else if (stage.etat == 2){
+            <div class="inscri-from-log">
+                <span class="inscri-messg">
+                    Nous répondrons à votre demande dans les plus brefs délais
+                </span>
+            </div>
+        }@if(stage.etat == -3 ){
+            <div class="inscri-from-log">
+                <span class="inscri-messg">
+                    Je vous remercie pour votre intérêt à rejoindre notre entreprise en tant que stagiaire. Cependant, après une évaluation attentive, nous regrettons de vous informer que nous ne pouvons pas donner suite à votre demande de stage.
+                </span>
+            </div>
+        }
+</div>
+}

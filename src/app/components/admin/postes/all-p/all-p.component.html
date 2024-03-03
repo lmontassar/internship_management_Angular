@@ -1,0 +1,124 @@
+<div class="title">
+    <h2>Toutes les Postes </h2>
+    <form #Sf="ngForm">
+        <input ngModel type="text" name="search" class="search" placeholder="recherche" (keyup)="search()">
+    </form>
+</div>
+
+<div class="block-filter">
+    <span>Filtre</span>
+    <div>
+        periode de stage du
+        <select name="" id=""  [(ngModel)]="filter.date_debut[0]">
+            <option value="0">mois</option>
+            @for(month of months;track $index){
+                <option [value]="$index+1">{{month}}</option>
+            }
+        </select>-
+        <select name="" id="" [(ngModel)]="filter.date_debut[1]">
+            <option value="0">année</option>
+            @for(year of years ;track $index){
+                <option [value]="year">{{year}}</option>
+            }
+        </select>
+        au
+        <select name="" id="" [(ngModel)]="filter.date_fin[0]">
+            <option value="0">mois</option>
+            @for(month of months;track $index){
+                <option [value]="$index+1">{{month}}</option>
+            }
+        </select>-
+        <select name="" id="" [(ngModel)]="filter.date_fin[1]">
+            <option value="0">année</option>
+            @for(year of years ;track $index){
+                <option [value]="year">{{year}}</option>
+            }
+        </select>
+        <button (click)="filtrer()">ok</button>
+    </div>
+</div>
+
+@if(waiting == false){
+    <table>
+        <thead>
+            <tr>
+                <th (click)="sort(0)">
+                    @if(ca1 == 0){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    ID
+                </th>
+                <th (click)="sort(1)">
+                    @if(ca1 == 1){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    region
+                </th> 
+                <th (click)="sort(2)">
+                    @if(ca1 == 2){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    nom de résidence
+                </th>
+                <th (click)="sort(3)">
+                    @if(ca1 == 3){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    adresse de résidence
+                </th>
+                <th (click)="sort(4)">
+                    @if(ca1 == 4){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    nombre des encadrants
+                </th>
+                <th (click)="sort(5)">
+                    @if(ca1 == 5){
+                        @if(srt == -1){
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z"/></svg>
+                        }@else {
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+                        }
+                    }
+                    nombre des stages
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (poste of postes; track $index) {
+                <tr (click)="GoToPost(poste.id)" >
+                    <td>{{poste.id}}</td>
+                    <td>{{poste.region.region}}</td>
+                    <td>{{poste.nom_residence}}</td>
+                    <td>{{poste.adresse}}</td>
+                    <td>{{poste.encadrants.length}}</td>
+                    <td
+                    [class.n3]="poste.stagesByTime.length>=20"
+                    [class.n2]=" 10<= poste.stagesByTime.length && poste.stagesByTime.length <20"
+                    [class.n1]="poste.stagesByTime.length<10"
+                    >{{ poste.stagesByTime.length}}</td>
+                </tr>
+            }
+        </tbody>
+</table>
+}

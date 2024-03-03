@@ -1,0 +1,145 @@
+<div class="form-container">
+    
+    <h2 [class.s2]="etape == 2">
+        <span>Inscription Stagiaire</span>
+    @if (etape == 2){
+        <span class="prec" (click)="prec()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+            </svg>
+            <span>
+                precedent
+            </span>
+        </span>
+    }
+    </h2>
+    <form #inscriForm="ngForm" (ngSubmit)="onSubmit()">
+        @if ( etape == 1) {
+
+            <div class="fullname">
+                <label for="znom">Nom et prenom</label>
+                <div>
+                    <input class="text-zone" [class.input-invalid]="nom.touched && test(inscriForm.value.nom , 1)" type="text" id="znom" name="nom" #nom="ngModel" ngModel placeholder="Tapez votre nom">
+                    <input class="text-zone" [class.input-invalid]="prenom.touched && test(prenom.value , 1)" type="text" id="z-prenom" name="prenom" #prenom="ngModel" ngModel placeholder="Tapez votre prenom"> 
+                    @if( (nom.touched && test(nom.value , 1) ) || (prenom.touched && test(prenom.value , 1)) ){
+                        <small class="invalid">Veuillez saisir valid nom et prénom (obligatoire)</small> 
+                    }
+                </div>
+            </div>
+
+            <div>
+                <label for="z-institut">Institut</label>
+                <input class="text-zone" [class.input-invalid]="institut.touched && test(institut.value , 2)"  type="text" id="z-institut" name="institut" #institut="ngModel" ngModel placeholder="Tapez votre institut"> 
+                @if( institut.touched && test(institut.value , 2)  ){
+                    <small class="invalid">Veuillez saisir valid institut (obligatoire)</small> 
+                }   
+            </div>
+            <div>
+                <label for="z-region">Région</label> 
+                
+                <select class="text-zone" [class.input-invalid]="id_region.touched && id_region.value == 0" id="z-region" name="id_region" #id_region="ngModel" ngModel> 
+                    <option value="0">choisir une region</option>
+                    @for (region of regions; track region.id ) {
+                        <option [value]="region.id">{{region.region}}</option>
+                    }
+                </select>
+
+                @if( id_region.touched && id_region.value == 0 ){
+                    <small class="invalid">Veuillez choisissez une region (obligatoire)</small> 
+                }
+
+            </div>
+
+            <div>
+                <label for="z-filiere">Filière</label>
+                <input class="text-zone" [class.input-invalid]="filiere.touched && test(filiere.value , 2)" type="text" id="z-filiere" name="filiere" #filiere="ngModel" ngModel placeholder="Tapez votre filiere" >
+                @if( filiere.touched && test(filiere.value , 2)  ){
+                    <small class="invalid">Veuillez saisir valid filiere (obligatoire)</small>
+                }
+            </div>
+
+            <div>
+                <button class="btn" (click)="suiv()">Suivant</button>
+            </div>
+
+        } @else {
+            <div>
+                <label for="">Nationalité</label>
+                <div class="nationalite-t">
+                    <input ngModel type="radio" name="countries" id="tn" (click)="tunisia()" value="0" checked><label for="tn">Tunisia</label>
+                    <input ngModel type="radio" name="countries" id="autre" (click)="autre()" value="1"><label for="autre">Autre</label>
+                </div>
+                @if(!tn){
+                    <select #pays="ngModel" name="id_pays" id="pays" ngModel>
+                        <option value="0" selected>choisi votre pays</option>
+                        @for(pays of countries ; track $index){
+                            <option [value]="pays.id">{{pays.name}}</option>
+                        }
+                    </select>
+                    @if( pays.touched && pays.value == 0 || (spays && pays.value ==0) ){
+                        <small class="invalid">Veuillez saisir valid passport (obligatoire)</small>
+                    }
+                }
+            </div>
+            <div>
+                <label for="">Identification</label>
+                <select name="c_id" id="" ngModel>
+                    <option value="1" selected>CIN (Carte d'identité nationale)</option>
+                    <option value="2">PASSEPORT (étranger)</option>
+                </select>
+            </div>
+            @if( inscriForm.value.c_id == 2 ){
+            <div>
+                <label for="z-passport">Numéro de passeport</label>
+                <input class="text-zone" [class.input-invalid]="passport.touched && test(passport.value , 3)" type="text" id="z-passport" name="passport" #passport="ngModel" placeholder="Tapez votre numéro de passport" ngModel>
+                @if( passport.touched && test(passport.value , 3)  ){
+                    <small class="invalid">Veuillez saisir valid passport (obligatoire)</small>
+                }
+            </div>
+            } @else {
+            <div>
+                <label for="z-cin">Carte d'identité nationale</label>
+                <input class="text-zone" [class.input-invalid]="cin.touched && test(cin.value , 4)" type="text" id="z-cin" name="cin" #cin="ngModel" placeholder="Tapez votre numéro de CIN" ngModel>
+                @if( cin.touched && test(cin.value , 4)  ){
+                    <small class="invalid">Veuillez saisir valid cin (obligatoire)</small>
+                }
+            </div>
+        }
+        <div>
+            <label for="z-tel">Numéro de téléphone</label>
+            <input class="text-zone" [class.input-invalid]="tel.touched && test(tel.value , 4)"  type="text" id="z-tel" name="tel" #tel="ngModel" placeholder="Tapez votre numéro de téléphone" ngModel>
+            @if( tel.touched && test(tel.value , 4)  ){
+                <small class="invalid">Veuillez saisir valid numéro de téléphone (obligatoire)</small>
+            }
+        </div>
+        <div>
+            <label for="z-email">Votre adresse email</label>
+            <input class="text-zone" [class.input-invalid]="email.touched && test(email.value , 5)" type="email" id="z-email" name="email" #email="ngModel" placeholder="Tapez votre email (Login)" ngModel>
+            @if(emailexiste){
+                <small class="invalid">L'adresse e-mail est déjà enregistrée</small>
+            }
+            @if( email.touched && test(email.value , 5)  ){
+                <small class="invalid">Veuillez saisir valid email (obligatoire)</small>
+            }
+        </div>
+        <div>
+            <label for="z-password">Votre mot de passe</label>
+            <input class="text-zone" [class.input-invalid]="password.touched && test(password.value , 6)" type="password" id="z-password" name="password" #password="ngModel" placeholder="Saisissez votre mot de passe" ngModel>
+            @if( password.touched && test(password.value , 6)  ){
+                <small class="invalid">Veuillez saisir valid mot de passe (obligatoire)</small>
+            }
+        </div>
+        <div>
+            <button button class="btn" type="submit">Inscription</button>
+        </div>
+        }
+        <div class="inscri-from-log">
+            <span class="inscri-messg">
+                Si vous êtes <strong>déjà inscrit</strong> en tant que <strong>stagiaire</strong> , veuillez vous connecter pour accéder à votre compte
+                <span class="inscri-lien" [routerLink]='["/login"]'>
+                    Connectez-vous.
+                </span>
+            </span>
+        </div>
+    </form>
+</div>

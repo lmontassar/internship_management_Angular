@@ -1,0 +1,115 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input.search {
+    outline: none;
+    background: none;
+    border: 2px solid #0f3c7c;
+    color: #0f3c7c;
+    font-size: 16px;
+    width: 250px;
+    margin-right: 50px;
+    height: max-content;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+table {
+    width: -webkit-fill-available;
+    border-collapse: collapse;
+    text-align: center ;
+    margin: 50px;
+}
+tr{
+    border: solid #0f3c7ca3;
+    cursor: pointer;
+    border-width : 0px 0 ;
+}
+tr:hover{
+    background-color: #f2f2f2;
+    border-width : 0px 0 ;
+}
+tr:first-child,tr:last-child{
+    border-width : 0px 0 ;
+}
+th{
+    text-align: center;
+    user-select: none;
+    align-items: center;
+}
+th,td{
+    padding: 15px 10px;
+}
+th svg{
+    width: 16px;
+    height: 16px;
+    fill: #0f3c7c;
+}
+td{
+    font-weight : 500;
+    text-transform: capitalize; 
+}
+tbody tr:nth-child(2n +1){
+    background-color: rgb(237, 237, 237);
+}
+.block-filter {
+    user-select: none;
+    margin: 0 50px;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 18px;
+    background: #ebebeb;
+}
+.block-filter span{
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.block-filter div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+.block-filter select{
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 0px solid;
+    outline : none;
+    color: #0f3c7c;
+}
+.block-filter option {
+    border-radius: 5px;
+  }
+  .block-filter button{
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 0px solid;
+    outline : none;
+    background-color: #0f3c7c;
+    color: #fdc613;
+    width: 50px;
+  }
+  td.n1{
+    border-right: 10px solid;
+    border-color: green;
+}
+td.n2{
+    border-right: 10px solid;
+    border-color:yellow !important;
+}
+td.n3{
+    border-right: 10px solid;
+    border-color: red;
+}

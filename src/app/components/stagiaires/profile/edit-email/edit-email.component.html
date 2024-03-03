@@ -1,0 +1,18 @@
+<form #editemailForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="z-email">Adresse email</label>
+        <input class="text-zone" [class.input-invalid]="email.touched && _stagiaireSer.testAttribute(email.value , 5)" type="email" #email="ngModel" id="z-email" name="email" placeholder="Votre adresse email (Login)" ngModel>
+        @if( email.touched && _stagiaireSer.testAttribute(email.value , 5) ){
+            <small class="invalid">Veuillez saisir valid email (obligatoire)</small>
+        }
+        @if(emailexiste){
+            <small class="invalid">L'adresse e-mail est déjà enregistrée</small>
+        }
+    </div>
+    @if( changed  ){
+        <div class="succ-modif">L'email a été modifiée avec succès.</div>
+    }
+    <div>
+        <button class="btn" type="submit">Modifier</button>
+    </div>
+</form>

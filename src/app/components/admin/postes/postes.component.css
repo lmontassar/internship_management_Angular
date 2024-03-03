@@ -1,0 +1,82 @@
+.container-sn{
+    font-family: 'Open Sans', sans-serif;
+    color: #0f3c7c; 
+    transition: 0.1s;
+}
+.contenu {
+    width: -webkit-fill-available;
+    padding: 50px 20px;
+}
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -225px;
+    
+    height: -webkit-fill-available;
+    background: #f2f2f2;
+    padding: 130px 0;
+    max-width: 300px;
+    min-width: 300px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0;
+    transition: 0.5s left, box-shadow 0.5s ;
+}
+.side-nav:hover{
+    left:0;
+    box-shadow: 0px 0px 42px 10px;
+}
+.sidenav-fix{
+    min-width: 75px;
+}
+.container-sn {
+    display: flex;
+}
+.side-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+}
+.side-nav ul li {
+    user-select: none;
+    padding: 20px 35px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: 0.1s;
+}
+.side-nav ul li path {
+    fill : #13448a;
+}
+.side-nav ul li:hover{
+    background-color: #13448a;
+    color: white; 
+}
+.side-nav ul li:hover path {
+    fill : white;
+}
+.side-nav ul li.active {
+    background-color: #0f3c7c;
+    color: #fdc613;
+}
+.side-nav ul li.active path {
+    fill : #fdc613;
+}
+.side-nav ul li svg {
+    width: 16px;
+    height: 16px;
+}
+.side-nav div {
+    user-select: none;
+    display: flex;
+    gap: 20px;
+    padding: 30px 20px 30px;
+    font-size: 26px;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    text-shadow: 0px 0px 10px #255aa5;
+}

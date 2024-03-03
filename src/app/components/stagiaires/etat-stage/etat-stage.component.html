@@ -1,0 +1,39 @@
+@if(stage){
+<div class="stage">
+    <div class="steps">
+        <div class="number">
+                <fa-icon [icon]="ck"></fa-icon>
+        </div>
+        <div class="line"></div>
+        <div class="number" [class.ref]="stage.etat == -2"  [class.active]="stage.etat == -2 || stage.etat == 0 || stage.etat == 1">
+            @if( stage.etat > 1 ){                
+                <fa-icon [icon]="ck"></fa-icon>
+            }@else if( stage.etat == - 2){ 
+                <fa-icon [icon]="ref"></fa-icon>
+            }@else{2}
+        </div>
+        <div class="line "></div>
+        <div class="number" [class.ref]="stage.etat == -3" [class.active]="stage.etat == -3 ||stage.etat == 2 || stage.etat == 3">
+            @if( stage.etat > 3 ){                
+                <fa-icon [icon]="ck"></fa-icon>
+            }@else if(stage.etat == -3){
+                <fa-icon [icon]="ref"></fa-icon>
+            }@else{3}
+        </div>
+        <div class="line"></div>
+        <div class="number" [class.active]="stage.etat == 4">
+            @if( stage.etat > 4 ){                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>
+            }@else{4}
+        </div>
+    </div>
+
+    @if( stage.etat == 0 || stage.etat == 1 || stage.etat == -2 ){
+        <app-waiting></app-waiting>
+    }@if( ( stage.etat >= 2 ) || stage.etat == -3 ){
+        <app-informations></app-informations>
+    }
+</div>
+}

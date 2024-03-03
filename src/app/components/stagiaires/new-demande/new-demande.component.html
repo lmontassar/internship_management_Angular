@@ -1,0 +1,102 @@
+<div class="stage">
+    <div class="steps">
+        <div class="number active">
+            1
+        </div>
+        <div class="line"></div>
+        <div class="number">
+            2
+        </div>
+        <div class="line "></div>
+        <div class="number" >
+            3
+        </div>
+        <div class="line"></div>
+        <div class="number">
+            4
+        </div>
+    </div>
+    <div class="form-container">
+        <h2>
+            <span>Demande de Stage</span>
+        </h2>
+        <form #stageForm="ngForm" (submit)="onSubmit()">
+            <div>
+                <label>Nature de stage</label>
+                <div class="naturestage">
+                    <input type="radio" name="group" id="obg" (click)="C()"><label for="obg">Obligatoire</label><br>
+                    <input type="radio" name="group" id="fac" (click)="O()"><label for="fac">Facultatif</label>
+                </div>
+                @if( choisir ){
+                    <small class="invalid">choisir la nature de stage (obligatoire)</small>
+                }
+                @if( facultatif == true ){
+                    <small class="invalid">Seulement les stages obligatoires sont acceptés</small>
+                }
+            </div>
+            <div>
+                <label for="ty">Type de stage</label>
+                <!--input class="text-zone" type="text" id="z-t3" name="type" placeholder="Indiquez le type de stage" ngModel [disabled]="facultatif"-->
+                <select [class.input-invalid]="type.touched && type.value == 0" #type="ngModel" ngModel name="type" id="ty" [disabled]="facultatif">
+                    <option value="0" selected>Choisissez type</option>
+                    @for(type of Typedestage;track $index){
+                        <option [value]="type.id">{{type.type}}</option>
+                    }
+                </select>
+                @if(  type.touched && type.value == 0 ){
+                    <small class="invalid">choisir votre type de stage (obligatoire)</small>
+                }
+            </div>
+            <div>
+                <label for="z-t8">
+                    Lieu Proposée <small>(direction, bureau de poste,..etc)</small>
+                </label>
+                <input [class.input-invalid]="lieu.touched &&  _stagiaireSer.testAttribute(lieu.value,2)" class="text-zone" type="text" id="z-t8" name="lieu_proposee" placeholder="Indiquez le lieu proposé" #lieu="ngModel" ngModel [disabled]="facultatif">
+                @if(  lieu.touched &&  _stagiaireSer.testAttribute(lieu.value,2) ){
+                    <small class="invalid"> Indiquez le lieu proposé (obligatoire)</small>
+                }
+            </div>
+            <div>
+                <label for="z-region">Région Proposée</label> 
+                
+                <select [class.input-invalid]="id_region.touched && id_region.value == 0" id="z-region" name="id_region" #id_region="ngModel" ngModel> 
+                    <option value="0">choisir une region</option>
+                    @for (region of regions; track $index ) {
+                        <option [value]="region.id">{{region.region}}</option>
+                    }
+                </select>
+
+                @if( id_region.touched && id_region.value == 0 ){
+                    <small class="invalid">Veuillez Choisissez une region (obligatoire)</small> 
+                }
+
+            </div>
+            <div>
+                <label for="date_debut">Date de Début</label>
+                <input [class.input-invalid]="date_debut.touched && (!date_debut.value || !verifDate(date_debut.value) )" class="text-zone" #date_debut="ngModel" type="date" id="date_debut" name="date_debut" placeholder="Sélectionnez la date de début" ngModel [disabled]="facultatif">
+                @if(  date_debut.touched && (!date_debut.value || !verifDate(date_debut.value) )  ){
+                    <small class="invalid"> Veuillez saisir la Date de début (obligatoire)</small>
+                }
+
+            </div>
+            <div>
+                <label for="date_fin">Date de Fin</label>
+                <input [class.input-invalid]="date_fin.touched && (!date_fin.value || !CompareDates(date_fin.value,date_debut.value))" class="text-zone" #date_fin="ngModel" type="date" id="date_fin" name="date_fin" placeholder="Sélectionnez la date de fin" ngModel [disabled]="facultatif">
+                @if(  date_fin.touched && (!date_fin.value || !CompareDates(date_fin.value,date_debut.value) )  ){
+                    <small class="invalid"> Veuillez saisir la Date de Fin (obligatoire)</small>
+                }
+            </div>
+            <div>
+                <label for="fiche_reponse">Demande de stage (.pdf)</label>
+                <input #ds="ngModel" type="file" id="fiche_reponse" name="fiche_reponse" accept=".pdf" (change)="Select($event)" ngModel [disabled]="facultatif">
+                @if( ds.touched &&  file == null  ){
+                    <small class="invalid"> Veuillez sélectionnez le fichier de demande de stage (obligatoire)</small>
+                }
+            </div>
+            <div>
+                <button class="btn" type="submit" [disabled]="facultatif">Soumettre</button>
+            </div>
+        </form>
+    </div>
+
+</div>

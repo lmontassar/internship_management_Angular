@@ -1,0 +1,84 @@
+<div class="form-container">
+    <h2 [class.s2]="edit != 0">
+        <span>
+            Modifier
+        </span>
+        @if(edit != 0){
+            <span class="prec" (click)="Edit(0)" >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+                </svg>
+                <span>
+                    precedent
+                </span>
+            </span>
+        }
+    </h2>
+    @if(edit == 0){
+        <div class="attribute" (click)="Edit(1)">
+            <span>identification</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(2)">
+            <span>nom et prenom</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(3)">
+            <span>email</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(4)">
+            <span>numéro de téléphone</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(5)">
+            <span>Institut</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(6)">
+            <span>Adresse</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+        <div class="attribute" (click)="Edit(7)">
+            <span>Mot de passe</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+            </svg>
+        </div>
+    }
+    @switch(edit){
+        @case (1) {
+            <app-edit-identification></app-edit-identification>
+        }
+        @case (2) {
+            <app-edit-nom></app-edit-nom>
+        }
+        @case (3) {
+            <app-edit-email></app-edit-email>
+        }
+        @case (4) {
+            <app-edit-tel></app-edit-tel>
+        }
+        @case (5) {
+            <app-edit-institut></app-edit-institut>
+        }
+        @case (6) {
+            <app-edit-adresse></app-edit-adresse>
+        }@case (7) {
+            <app-edit-password></app-edit-password>
+        }
+    }
+
+</div>

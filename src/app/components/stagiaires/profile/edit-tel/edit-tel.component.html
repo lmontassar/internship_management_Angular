@@ -1,0 +1,15 @@
+<form #edittelForm="ngForm" (submit)="onSubmit()">
+    <div>
+        <label for="z-tel">Numéro de téléphone</label>
+        <input #tel="ngModel"  class="text-zone" [class.input-invalid]="tel.touched && _stagiaireSer.testAttribute(tel.value , 4)"  type="text" id="z-tel" name="tel" placeholder="Tapez votre numéro de téléphone" ngModel>
+        @if( tel.touched && _stagiaireSer.testAttribute(tel.value , 4)  ){
+            <small class="invalid">Veuillez saisir valid numéro de téléphone (obligatoire)</small>
+        }
+    </div>
+    @if( changed  ){
+        <div class="succ-modif">Numéro de téléphone a été modifiée avec succès.</div>
+    }
+    <div>
+        <button button class="btn" type="submit">Modifier</button>
+    </div>
+</form>

@@ -1,0 +1,97 @@
+<div class="popupContainer" id="popupContainer"> 
+    <div class="popupContent">
+        <form #form="ngForm">
+        <h2 class="ttt">ENVOYER L'ATTESTATION DE STAGE</h2>
+        <table>
+            <tr>
+                <th>
+                        Note n°
+                </th>
+                <td><input class="text-zone" type="text" ngModel name="id"></td>
+            </tr>
+            <tr>
+                <th>Nom et Prenom</th>
+                <td><input class="text-zone" type="text" ngModel name="etudiant"></td>
+            </tr>
+            @if(cin){
+                <tr>
+                    <th>CIN</th>
+                    <td><input class="text-zone" type="text" ngModel name="cin"></td>
+                </tr>
+            }@else {
+                <tr>
+                    <th>N°PASSPORT</th>
+                    <td><input class="text-zone" type="text" ngModel name="passport"></td>
+                </tr>
+            }
+            <tr>
+                <th>Inscrit à l'etablissement</th>
+                <td><input class="text-zone" type="text" ngModel name="institut"></td>
+            </tr>
+            <tr>
+                <th>Type de stage</th>
+                <td><input class="text-zone" type="text" ngModel name="type"></td>
+            </tr>
+            <tr>
+                <th>Date de début</th>
+                <td><input class="text-zone" type="date" ngModel name="date_debut"></td>
+            </tr>
+            <tr>
+                <th>Date de fin</th>
+                <td><input class="text-zone" type="date" ngModel name="date_fin"></td>
+            </tr>
+
+            <tr>
+                <th>Générer le fiche réponse</th>
+                <td class="reponse">
+                    <div class="v">
+                        <span class="Att acc imbtn" (click)=" genererPDF()">
+                            <fa-icon [icon]="file"></fa-icon>
+                            {{genererMessage}}
+                        </span>
+                        @if(refic){
+                            <fa-icon [icon]="ref" class="rot"></fa-icon>
+                        }
+                    </div>
+                </td>
+            </tr>
+            @if(PDF){
+                <tr>
+                    <th>
+                        L'attestation de stage
+                    </th>
+                    <td>
+                        <div class="v">
+                            <span class="imprimer" (click)="_adminSer.openPDF(PDF,'Attestation de stage')">
+                                <fa-icon [icon]="imp"></fa-icon>
+                                Verifier
+                            </span> 
+                            @if(pdfchanged){
+                                <small>(modifié)</small>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Réponse</th>
+                    <td class="reponse">
+                        <div class="v" (click)="host.sendAttest();exit()">
+                            <span class="Att send imbtn" >
+                                <fa-icon [icon]="paper"></fa-icon>
+                                Envoyer
+                            </span>
+                            <span class="Att ref imbtn"(click)="exit()" >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                                </svg>
+                                Annuler
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+        </form>
+    </div>
+</div>
+<div class="blurBackground" id="blurBackground" (click)="exit()"></div>

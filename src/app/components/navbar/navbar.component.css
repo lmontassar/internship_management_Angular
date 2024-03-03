@@ -1,0 +1,258 @@
+
+header {
+    background: #255aa5;
+    box-shadow: 0px 0px 4px 6px #255aa5;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    line-height: normal;
+    letter-spacing: 1px;
+    color: #fdc613;
+    font-style: normal;
+    font-weight: 400;
+    position: fixed;
+    width: -webkit-fill-available;
+    top: 0;
+    z-index: 99999;
+    user-select: none;
+}
+
+.clearfix {
+    height: 100px;
+    transition: 0.4s;
+}
+
+header .name {
+    font-size: 30px;
+}
+
+header ul {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    font-size: 22px;
+    gap: 25px;
+}
+
+header ul li {
+    text-transform: capitalize;
+    cursor: pointer;
+    
+}
+
+header ul li.active {
+    color: white !important;
+}
+
+header ul li:first-child {
+    margin-left: 0px;
+}
+
+header .nav-lists {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 54%;
+}
+
+header .nav-account {
+    display: flex;
+    font-size: 22px;
+}
+
+header .nav-account .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 35px;
+    background: #255AA5;
+    color: #FFF;
+    margin-right: 25px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+header .nav-account .login:hover {
+    background: #0d3874;
+    transition: 0.4s;
+}
+
+header .nav-account .Signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .nav-account .my-account {
+    display: flex;
+    align-items: center;
+    width: 212px;
+    cursor: pointer;
+}
+
+header .nav-account .my-account div {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 100px;
+    border: 2px solid #FFF;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+header .nav-account .my-account img {
+    width: fit-content;
+    width: -webkit-fill-available;
+}
+
+header .nav-account .logout {
+    font-weight: 600;
+    margin-left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+header .icon {
+    display: none;
+}
+
+header .sup {
+    display: none;
+}
+
+@media screen and (max-width :1300px) {
+    header .nav-account .my-account {
+        width: 155px;
+    }
+
+    header {
+        padding: 0px 5%;
+    }
+}
+
+@media screen and (max-width :1140px) {
+    header {
+        padding: 0px 5%;
+    }
+
+    header .nav-lists {
+        width: 58%;
+    }
+}
+
+header .span-name {
+    cursor: pointer;
+}
+
+@media screen and (max-width :960px) {
+
+    header.open {
+        height: 280px;
+        transition: 0.4s;
+    }
+    .clearfix.open {
+        height: 320px;
+        transition: 0.4s;
+    }
+    header.open.specheight-login{
+        height: 210px;
+    }
+    .clearfix.open.specheight-login{
+        height: 250px;
+    }
+    header {
+        display: block;
+        padding: 12px 10%;
+        height: 60px;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+
+
+    header .name {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header .nav-lists {
+        margin-top: 50px;
+        display: block;
+        width: auto;
+    }
+
+    header ul {
+        display: block;
+    }
+
+    header .sup {
+        display: block;
+        background-color: #fdc613;
+        width: 100%;
+        height: 2px;
+        flex-shrink: 0;
+        margin: auto;
+    }
+
+    header ul li {
+        margin-left: 20px !important;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    header ul li .icon {
+        margin-right: 25px;
+    }
+
+    header .icon {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+    }
+
+    header .nav-account {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    header .nav-account .my-account {
+        width: auto;
+    }
+}
+li path{
+    fill: #fdc613;
+} 
+li.active path{
+    fill: white;
+} 
+.div-logo {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+    
+}
+
+.logout:hover {
+    color: #c0392b;
+    font-weight: 600;
+}
+.logout path{
+    fill:#fdc613;
+    transition: 0.3s ease;
+}
+.logout:hover path{
+    fill: #c0392b;
+}

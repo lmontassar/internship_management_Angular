@@ -1,0 +1,57 @@
+<div class="title">
+    <h2>Les stages encours ({{Stages.length}})  
+    </h2>
+    <span class="Att">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+            <path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+        </svg>
+        Encours de stage
+    </span>
+</div>
+<table>
+    <tr>
+        @if(Stages.length == 0){
+            <th>Aucune de stage encours</th>
+        }@else{
+            <th>Référence</th>
+            <th>Identifier</th>
+            <th>Date de demande</th>
+            <th>Nom et Prenom</th>  
+            <th>Institut</th>
+            <th>poste</th>
+            <th>Encadrant</th>
+            <th>Type</th>
+            <th>Periode</th>
+        }
+    </tr>
+    @for(stage of Stages; track stage.id ){
+        <tr  routerLink="/stageRep/{{stage.id}}">
+            <td>{{stage.id}}/{{stage.date_demande | date:'yyyy' }}</td>
+            @if(stage.stagiaire.cin){
+                <td><span class="cin">cin</span> {{stage.stagiaire.cin}}</td>
+            }@else{
+                <td><span class="psprt">psp</span> {{stage.stagiaire.passport}}</td>
+            }
+            <td>{{stage.date_demande | date:'yyyy/MM/dd'}}</td>
+            <td>{{stage.stagiaire.prenom}} {{stage.stagiaire.nom}} </td>
+            <td>{{stage.stagiaire.institut}}</td>
+            <td>
+                @if(stage.poste){
+                    {{stage.poste.nom_residence}}
+                }@else {
+                    ---
+                }
+                
+            </td>
+            <td>
+                @if(stage.encadrant ){
+                    {{ stage.encadrant.nom }} {{stage.encadrant.prenom}}
+                }@else {
+                    ---
+                }
+            </td>
+            <td>{{stage.type}}</td>
+            <td>{{stage.date_debut | date:'yyyy/MM/dd'}} - {{stage.date_fin | date:'yyyy/MM/dd'}}</td>
+        </tr>
+    }
+</table>

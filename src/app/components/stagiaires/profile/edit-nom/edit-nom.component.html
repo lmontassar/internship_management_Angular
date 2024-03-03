@@ -1,0 +1,18 @@
+<form #editnomForm="ngForm" (ngSubmit)="onSubmit()">    
+    <div class="fullname">
+        <label for="z-nom">Nom et prenom</label>
+        <div>
+            <input #nom="ngModel" [class.input-invalid]="nom.touched && _stagiaireSer.testAttribute(nom.value , 1)" class="text-zone"  type="text" id="z-nom" name="nom" ngModel placeholder="Tapez votre nom">
+            <input #prenom="ngModel" [class.input-invalid]="prenom.touched && _stagiaireSer.testAttribute(prenom.value , 1)"   class="text-zone"  type="text" id="z-prenom" name="prenom" ngModel placeholder="Tapez votre prenom">  
+            @if( (nom.touched && _stagiaireSer.testAttribute(nom.value , 1) ) || (prenom.touched && _stagiaireSer.testAttribute(prenom.value , 1)) ){
+                <small class="invalid">Veuillez saisir valid nom et prénom (obligatoire)</small> 
+            }
+        </div>
+    </div>
+    @if( changed  ){
+        <div class="succ-modif">L'institut a été modifiée avec succès.</div>
+    }
+    <div>
+        <button button class="btn" type="submit">Modifier</button>
+    </div>
+</form>
